@@ -1,0 +1,14 @@
+div{
+  width: 25%;
+  display: inline-block;
+}
+button{
+  width: 100%;
+  background: darkgray;
+  padding: 10px;
+  transition: all linear 200ms;
+  cursor: pointer;
+}
+button:hover{
+  background: gray;
+}
