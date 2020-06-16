@@ -14,26 +14,31 @@ export class WeatherService {
     this.Cities = this.GetSavedCities();
   }
 
-  GetCityWeather(city: City) {
+  private GetCityWeather(city: City) {
     return this.client.get(`http://api.openweathermap.org/data/2.5/weather?q=${city.Name}&appid=9e5a8142e4cc57ac87916bc21be61095`)
       .toPromise().then(res => {
+        city.WeatherData=res as WeatherData;
         return res as WeatherData;
       },
-        res => {
-          return null;
-        });
+      res => {
+        return null;
+      });
   }
 
   async AddNewCity(city: City) {
+    city.IsLoading=true;
     let tempWeatherData = await this.GetCityWeather(city);
     if (tempWeatherData) {
       city.WeatherData = tempWeatherData;
       city.LastRefresh = new Date();
-      this.SaveCity(city);
+      setTimeout(() => {
+        city.IsLoading=false;
+        this.SaveCity(city);
+      }, 500);
     }
   }
 
-  SaveCity(city: City) {
+  private SaveCity(city: City) {
     let index = this.Cities.findIndex(x => x.Name == city.Name);
     if (index >= 0)
       this.UpdateCity(city);
@@ -46,18 +51,19 @@ export class WeatherService {
   DeleteCity(city: City) {
     let index = this.Cities.findIndex(x => x.Name == city.Name);
     if (index >= 0) {
+      clearInterval(city.AutoRefresh);
       this.Cities.splice(index, 1);
       localStorage.removeItem(city.Name);
     }
   }
 
-  UpdateCity(city: City) {
+  private UpdateCity(city: City) {
     localStorage.setItem(city.Name.toLocaleLowerCase(), JSON.stringify(city));
     let index = this.Cities.findIndex(x => x.Name == city.Name);
     this.Cities[index] = city;
   }
 
-  GetSavedCities() {
+  private GetSavedCities() {
     var citiesCount = localStorage.length;
     let tempCities: City[] = [];
     for (var i = 0; i < citiesCount; i++) {
@@ -66,5 +72,12 @@ export class WeatherService {
       tempCities.push(JSON.parse(temp));
     }
     return tempCities;
+  }
+
+  setAutoRefresh(city:City){
+    clearInterval(city.AutoRefresh);
+    city.AutoRefresh=setInterval(()=>{
+      this.AddNewCity(city);
+    },10000);
   }
 }

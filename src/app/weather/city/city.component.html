@@ -1,16 +1,19 @@
-<div class="card text-center">
+<div class="card text-center" style="position: relative;">
+  <div *ngIf="city.IsLoading" class="loading-div"></div>
   <div class="card-header">
     <button mat-raised-button color="warn" (click)="deleteCity(city)" style="border-radius: 50%;margin-right: 10px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
     <span style="font-size: x-large;">{{city.Name}}</span>
     <button mat-raised-button color="primary" (click)="refreshCity(city)" style="border-radius: 50%;margin-left: 10px;"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-
   </div>
   <div class="card-body container-fluid">
     <div class="row">
-      <div class="col-8" style="font-size: 35px;">{{city.WeatherData.main.temp | kelvinToCelcius}}</div>
+      <div class="col-8" >
+        <div style="font-size: 35px;">{{city.WeatherData.main.temp | kelvinToCelcius}}</div>
+        <div class="mt-2">{{city.WeatherData.weather[0]?.description}}</div>
+      </div>
       <div class="col-4">
-        {{city.WeatherData.main.temp_max}} <i class="fa fa-arrow-up" aria-hidden="true"></i> <br>
-        {{city.WeatherData.main.temp_min}} <i class="fa fa-arrow-down" aria-hidden="true"></i> <br>
+        {{city.WeatherData.main.temp_max | kelvinToCelcius}} <i class="fa fa-arrow-up text-danger" aria-hidden="true"></i> <br>
+        {{city.WeatherData.main.temp_min | kelvinToCelcius}} <i class="fa fa-arrow-down text-info" aria-hidden="true"></i> <br>
         <span class="badge badge-primary" style="font-size: large;">
           <i class="fa fa-tint" aria-hidden="true"></i> {{city.WeatherData.main.humidity}}%
         </span>

@@ -17,9 +17,14 @@ export class CityComponent implements OnInit {
   }
 
   async ngOnInit() {
-
+    this.wService.setAutoRefresh(this.city);
   }
+
   deleteCity(city:City){
     this.wService.DeleteCity(city);
+  }
+
+  refreshCity(city:City){
+    this.wService.AddNewCity(city);
   }
 }

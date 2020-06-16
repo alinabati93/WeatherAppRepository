@@ -12,7 +12,7 @@ export class WeatherAddCityComponent implements OnInit {
   constructor(private wService:WeatherService) { }
 
   async addNewCity(){
-    let city:City={Name:this.cityName};
+    let city:City={Name:this.cityName,IsLoading:false};
     await this.wService.AddNewCity(city);
     this.cityName="";
   }

@@ -1,7 +1,6 @@
 body{
   background-image: url('assets/Images/background.jpg');
   background-size: cover;
-  padding: 20px 100px;
 }
 
 html, body { height: 100%; }
