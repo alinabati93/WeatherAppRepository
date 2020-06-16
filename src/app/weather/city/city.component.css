@@ -1,0 +1,12 @@
+.city{
+  border: 1px solid gray;
+  background-color: darkgray;
+  border-radius: 5px;
+  transition: all ease-in 300ms;
+  margin: 3px;
+  padding: 3px;
+}
+.city:hover{
+  box-shadow: gray 2px 2px 5px;
+  background-color: lightcyan;
+}

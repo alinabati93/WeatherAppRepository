@@ -1,0 +1,10 @@
+<mat-card>
+  <mat-form-field>
+    <mat-label>Enter new city name...</mat-label>
+    <input matInput placeholder="Ex. Isfahan" [(ngModel)]="cityName">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="addNewCity()" style="padding: 15px 10px;margin-left: 10px;"><i class="fa fa-plus" aria-hidden="true"></i> Add to list</button>
+</mat-card>
+
+
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />

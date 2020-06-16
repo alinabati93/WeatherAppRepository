@@ -1,3 +1,8 @@
 body{
-  max-width: 450px;
+  background-image: url('assets/Images/background.jpg');
+  background-size: cover;
+  padding: 20px 100px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
