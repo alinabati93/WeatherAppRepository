@@ -17,6 +17,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
+import { FlexLayoutModule } from "@angular/flex-layout";
   import { from } from 'rxjs';
 import { KelvinToCelciusPipe } from './pipes/kelvin-to-celcius.pipe';
 
@@ -41,7 +42,8 @@ import { KelvinToCelciusPipe } from './pipes/kelvin-to-celcius.pipe';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatChipsModule
+    MatChipsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
