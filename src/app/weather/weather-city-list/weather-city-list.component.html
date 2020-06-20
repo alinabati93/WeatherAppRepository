@@ -5,7 +5,7 @@
     </div>
   </div>
 </div> -->
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="flex-start" >
+<div fxLayout="row wrap" fxLayout.xs="column " fxLayoutGap="10px" fxLayoutAlign="flex-start" >
     <div *ngFor="let item of cities" fxFlex="0 1 calc(33.3% - 10px)" fxFlex.sm="0 1 calc(50% - 10px)"  class=" py-3">
       <app-city [city]="item" ></app-city>
     </div>
